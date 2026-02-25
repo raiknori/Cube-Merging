@@ -38,6 +38,18 @@ public class PlayerCubeSpawner : MonoBehaviour, IImpactableObjectSpawner
         visualizeService.VisualizeMerge(spawnedGo.GetComponent<IMergeable>());
     }
 
+    void DefineValue(IMergeable mergeable)
+    {
+        if (UnityEngine.Random.Range(1, 25) <= 25)
+        {
+            mergeable.SetValue(4);
+        }
+        else
+        {
+            mergeable.SetValue(2);
+        }
+    }
+
     void StartSpawning()
     {
         StartCoroutine(CdSpawning());
