@@ -17,6 +17,7 @@ public class GameInstaller : MonoInstaller
         Container.Bind<IMergeService>().To<MergeService>().AsSingle();
         Container.Bind<VisualizeService>().AsSingle();
         Container.Bind<IGameOver>().To<GameFlow>().FromInstance(gameflow).AsSingle();
+        Container.Bind<IDefineValue>().To<DeffaultDefineValue>().AsSingle();
     }
 
     void CheckDevice()

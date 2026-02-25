@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +13,7 @@ public class PlayerCubeSpawner : MonoBehaviour, IImpactableObjectSpawner
 
     [Inject] private DiContainer _container;
     [Inject] private VisualizeService visualizeService;
+    [Inject] private IDefineValue defineValue;
 
     Action _releasedImpactableObject;
     public Action ReleasedImpactableObject => _releasedImpactableObject;
@@ -35,20 +35,13 @@ public class PlayerCubeSpawner : MonoBehaviour, IImpactableObjectSpawner
         IImpactableObject obj = spawnedGo.GetComponent<IImpactableObject>();
         Spawned.Invoke(obj);
 
-        visualizeService.VisualizeMerge(spawnedGo.GetComponent<IMergeable>());
+        var mergeable = spawnedGo.GetComponent<IMergeable>();
+
+        defineValue.DefineValue(mergeable);
+        visualizeService.VisualizeMerge(mergeable);
     }
 
-    void DefineValue(IMergeable mergeable)
-    {
-        if (UnityEngine.Random.Range(1, 25) <= 25)
-        {
-            mergeable.SetValue(4);
-        }
-        else
-        {
-            mergeable.SetValue(2);
-        }
-    }
+
 
     void StartSpawning()
     {
