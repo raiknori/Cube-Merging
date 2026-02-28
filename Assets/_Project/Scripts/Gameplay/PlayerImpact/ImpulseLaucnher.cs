@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using Zenject;
 
-public class ImpulseLaucnher : MonoBehaviour
+public class ImpulseLaucnher : MonoBehaviour, IObjectLauncher
 {
     [SerializeField] private float _launchForce = 1f;
     
@@ -9,9 +10,12 @@ public class ImpulseLaucnher : MonoBehaviour
 
     [Inject] IHoldInput input;
     [Inject] IImpactableObjectSpawner spawner;
-    [Inject] AudioService audioService;
+
 
     private IImpactableObject _impactableObject;
+
+    public event Action ObjectReleased;
+
     private void Awake()
     {
         input.InputReleased += Launch;
@@ -30,8 +34,7 @@ public class ImpulseLaucnher : MonoBehaviour
         _impactableObject.Rigidbody.AddForce(transform.forward * _launchForce * Time.fixedDeltaTime * 100f, ForceMode.Impulse );
         _impactableObject = null;
         spawner.ReleasedImpactableObject?.Invoke();
-
-        audioService.PlaySound("throw");
+        ObjectReleased?.Invoke();
     }
 
 }   

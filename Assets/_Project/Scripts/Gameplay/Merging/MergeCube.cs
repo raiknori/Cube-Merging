@@ -48,3 +48,4 @@ public class MergeCube : MonoBehaviour, IMergeable
     }
 
 }
+

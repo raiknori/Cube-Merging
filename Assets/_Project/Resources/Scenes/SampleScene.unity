@@ -1408,6 +1408,7 @@ MonoBehaviour:
   phoneInputController: {fileID: 1901116119}
   phonePositionInputController: {fileID: 1901116118}
   spawner: {fileID: 1562277444}
+  impulseLauncher: {fileID: 260099745}
   gameflow: {fileID: 926472123}
 --- !u!1 &1209696543
 GameObject:
