@@ -10,6 +10,7 @@ public class GameInstaller : MonoInstaller
     [SerializeField] PlayerCubeSpawner spawner;
     [SerializeField] ImpulseLaucnher impulseLauncher;
     [SerializeField] GameFlow gameflow;
+    [SerializeField] CoroutineRunner coroutineRunner;
     public override void InstallBindings()
     {
         CheckDevice();
@@ -21,6 +22,7 @@ public class GameInstaller : MonoInstaller
         Container.BindInterfacesTo<Impact>().AsSingle();
         Container.Bind<IGameOver>().To<GameFlow>().FromInstance(gameflow).AsSingle();
         Container.Bind<IDefineValue>().To<DeffaultDefineValue>().AsSingle();
+        Container.Bind<ICoroutineRunner>().To<CoroutineRunner>().FromInstance(coroutineRunner).AsSingle();
     }
 
     void CheckDevice()

@@ -445,7 +445,6 @@ MonoBehaviour:
   - {fileID: 4135979242056947393}
   renderer: {fileID: 4006406723325748519}
   _playerCube: {fileID: 6847902091509094987}
-  value: 2
 --- !u!1 &6416582827965621649
 GameObject:
   m_ObjectHideFlags: 0
