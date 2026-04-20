@@ -8,7 +8,9 @@ public class GameInstaller : MonoInstaller
     [SerializeField] PhoneInputController phoneInputController;
     [SerializeField] PhonePositionInputController phonePositionInputController;
     [SerializeField] PlayerCubeSpawner spawner;
+    [SerializeField] ImpulseLaucnher impulseLauncher;
     [SerializeField] GameFlow gameflow;
+    [SerializeField] CoroutineRunner coroutineRunner;
     public override void InstallBindings()
     {
         CheckDevice();
@@ -16,7 +18,11 @@ public class GameInstaller : MonoInstaller
         Container.Bind<IImpactableObjectSpawner>().To<PlayerCubeSpawner>().FromInstance(spawner).AsSingle();
         Container.Bind<IMergeService>().To<MergeService>().AsSingle();
         Container.Bind<VisualizeService>().AsSingle();
+        Container.Bind<IObjectLauncher>().To<ImpulseLaucnher>().FromInstance(impulseLauncher).AsCached();
+        Container.BindInterfacesTo<Impact>().AsSingle();
         Container.Bind<IGameOver>().To<GameFlow>().FromInstance(gameflow).AsSingle();
+        Container.Bind<IDefineValue>().To<DeffaultDefineValue>().AsSingle();
+        Container.Bind<ICoroutineRunner>().To<CoroutineRunner>().FromInstance(coroutineRunner).AsSingle();
     }
 
     void CheckDevice()

@@ -4,7 +4,6 @@ using Zenject;
 public class MergeService : IMergeService
 {
     [Inject] private VisualizeService visualizeMergeService;
-    [Inject] private AudioService audioService;
 
     public event Action<int> MergeCompleted;
 
@@ -23,7 +22,6 @@ public class MergeService : IMergeService
         second.DestroySelf();
 
         MergeCompleted?.Invoke(newValue);
-        audioService.PlaySound("merge");
 
         return true;
     }
