@@ -1,44 +1,47 @@
-
 # 2048 3D Prototype
 
-## Objective
+A physics-based 3D reinterpretation of the classic 2048 game, where players launch cubes to merge values and score points.
 
-A basic 3D physical prototype of the popular 2048 game, designed for Mobile/Pc platforms.
+## Technologies
+- Unity 6.0 (6000.0.51f1)
+- Zenject (Dependency Injection)
 
-## Platform
+## Features
+- Physics-based cube launching
+- Merge mechanics based on collision impulse
+- Power-of-2 progression system (2, 4, 8, 16...)
+- Score system tied to merge values
+- Modular and scalable architecture
 
-* Android/IOS
-* PC
+## How to Run
 
-## Gameplay
+1. Open the project in Unity Hub
+2. Use Unity version: 6000.0.x (most likely will work on higher versions)
+3. Open scene called "SampleScene"
 
-* **Location:** Long rectangular board bounded by walls.
-* **Cube spawning:** At the start, a cube spawns at the center with a Power-of-2 (Po2) value:
+## Controls
 
-  * 75% chance: 2
-  * 25% chance: 4
-* **Controls:**
+| Action              | Input                          |
+|---------------------|--------------------------------|
+| Prepare cube        | Hold touch / mouse button      |
+| Move left/right     | Drag horizontally              |
+| Launch cube         | Release input                  |
 
-  * Touch and hold to prepare the cube.
-  * Drag left/right to move cube horizontally.
-  * Release to launch cube forward.
-* **Merging:** Cubes merge if:
 
-  * They collide with enough impulse.
-  * They have the same Po2 value.
-  * Resulting cube has a value equal to the sum of merged cubes.
-* **Scoring:** Each merge gives a score equal to `Po2 / 2`.
+## Architecture Notes
 
-  * Example: merging 2+2 → 1 point, 4+4 → 2 points, 8+8 → 4 points, etc.
-* **Game over:** Defined by the inability to spawn or move cubes.
+- Uses **Zenject** for dependency injection
+- Clear separation of:
+- Input handling
+- Cube logic
+- Game rules
+- Easily extendable:
+- new cube behaviors
+- new scoring rules
+- different board setups
+- Designed for rapid prototyping and scalability
 
-## Architecture
+## Feature Demo:
+![Demo](Feature.gif)
 
-* Focus on **Dependency Injection (DI)** using **Zenject**.
-* Designed with a **scalable architecture** for future updates.
-* Clean separation of input, cube logic, and game rules for maintainability.
-
-## Notes
-
-* Prototype emphasizes modularity and future expandability.
-
+[Video](https://drive.google.com/file/d/1vktF5FKpiwSeM6MzEmC4DZchQc7Tyxy-/view?usp=sharing)
